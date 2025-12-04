@@ -1,0 +1,21 @@
+import sys
+initial = sys.stdin.read().splitlines()
+puzzle = [list(lines) for lines in initial]
+forklift = 0
+
+for i in range(0, len(puzzle)):
+  for k in range(0, len(puzzle[i])):
+    current_sum = 0
+    for j in range(i-1, i+2):
+      for l in range(k-1, k+2):
+        if 0 <= j < len(puzzle) and 0 <= l < len(puzzle[j]):
+          if j != i or l != k:
+             if puzzle[j][l] == '@':
+                current_sum += 1
+    
+    if puzzle[i][k] == '@':
+      if current_sum < 4:
+         forklift += 1
+         puzzle.remove(puzzle[i][j])
+      
+print(forklift)
