@@ -1,0 +1,31 @@
+import sys 
+puzzle = sys.stdin.read().split(",")
+answer = 0
+
+def palindrome_checker(i):
+  i = str(i)
+  
+  for k in range(2, len(i)+1):
+    if len(i) % k == 0:
+      user = True
+      sub = len(i) // k
+      x = 0
+      
+      while x < len(i):
+        if i[x:x + sub] != i[:sub]:
+           user = False
+        x += sub
+      
+      if user:
+        return True
+  
+  return False
+        
+for char in puzzle:
+  first, last = char.split("-")
+  
+  for i in range(int(first), int(last) + 1):
+    if palindrome_checker(i):
+      answer += i
+  
+print(answer)
