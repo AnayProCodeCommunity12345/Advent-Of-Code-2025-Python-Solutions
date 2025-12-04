@@ -1,0 +1,14 @@
+import sys
+import itertools
+puzzle = sys.stdin.read().splitlines()
+current_sum = 0
+
+for char in puzzle:
+  numbers = []
+  list1 = list(itertools.combinations(char, 12))
+  for num in list1:
+    numbers.append(int("".join(num)))
+    
+  current_sum += max(numbers)
+  
+print(current_sum)
